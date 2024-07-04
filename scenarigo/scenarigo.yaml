@@ -1,0 +1,10 @@
+schemaVersion: config/v1
+
+scenarios:
+  - metadata.yaml
+
+output:
+  verbose: true
+  report:
+    json:
+      filename: ./output.json 

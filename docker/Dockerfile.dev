@@ -1,0 +1,15 @@
+FROM golang:1.22.1-alpine
+
+WORKDIR /app
+
+RUN go install github.com/air-verse/air@latest
+
+COPY . .
+RUN go mod tidy
+
+ENV PORT=1000
+ENV DATASET=metadata
+ENV TABLE=users
+EXPOSE 1000
+
+CMD ["air", "-c", ".air.toml"]

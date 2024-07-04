@@ -1,0 +1,43 @@
+title: metadata
+vars:
+  url: http://localhost:1000/
+steps:
+  - title: none
+    protocol: http
+    request:
+      method: GET
+      url: "{{vars.url}}"
+      query:
+        object: ユーザーのアクティビティを取得する SQL です。
+        sql: SELECT users.account_details.last_activity FROM `metadata.users` WHERE id IN (1, 2, 3)
+        with: none
+      header:
+        Content-Type: application/json
+    expect:
+      code: OK
+  - title: metadata
+    protocol: http
+    request:
+      method: GET
+      url: "{{vars.url}}"
+      query:
+        object: ユーザーのアクティビティを取得する SQL です。
+        sql: SELECT users.account_details.last_activity FROM `metadata.users` WHERE id IN (1, 2, 3)
+        with: metadata
+      header:
+        Content-Type: application/json
+    expect:
+      code: OK
+  - title: schema_file
+    protocol: http
+    request:
+      method: GET
+      url: "{{vars.url}}"
+      query:
+        object: ユーザーのアクティビティを取得する SQL です。
+        sql: SELECT users.account_details.last_activity FROM `metadata.users` WHERE id IN (1, 2, 3)
+        with: schema_file
+      header:
+        Content-Type: application/json
+    expect:
+      code: OK
